@@ -5,9 +5,9 @@
 """
 
 user_string = input("Please enter a sentence to discover the quantity of unique symbols -> ").replace(" ", "").lower()
-print(user_string)
+# print(user_string)
 user_set = set(user_string)
-print(user_set)
+print(f"The unique symbols are {user_set}")
 
 if len(user_set) > 10:
     print(f"That's {True}, {len(user_set)} is greater than 10.")
