@@ -4,7 +4,7 @@
 """
 user_word = input("Please enter a word with letter 'O' --> ")
 
-while "o" not in user_word.lower():
+while "o" not in user_word and "O" not in user_word:  # or it's possible to use user_word.lowercase()
     user_word = input("The letter 'O' is absent in your word, please enter another one --> ")
 
 print(f"Yes, the letter 'О' is present in word '{user_word}'")
