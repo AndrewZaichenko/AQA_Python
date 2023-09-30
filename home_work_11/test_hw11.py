@@ -27,6 +27,8 @@ class TestRegistration:
         self.driver = webdriver.Chrome()
         # self.driver.implicitly_wait(3)
         self.user_session = requests.session()
+
+    def test_empty_garage_after_registration(self):
         self.driver.get("https://guest:welcome2qauto@qauto2.forstudy.space/")
         sign_up_button = self.driver.find_element(By.XPATH, "//button[text()='Sign up']")
         sign_up_button.click()
@@ -42,8 +44,6 @@ class TestRegistration:
         repeat_password_field.send_keys("Qwerty123")
         register_button = self.driver.find_element(By.XPATH, "//button[text()='Register']")
         register_button.click()
-
-    def test_empty_garage_after_registration(self):
         # empty_garage = self.driver.find_elements(By.XPATH, "//p[text()='You don’t have any cars in your garage']")
         empty_garage = WebDriverWait(self.driver, 10).until(expected_conditions.visibility_of_element_located((By.XPATH, "//p[text()='You don’t have any cars in your garage']")))
         # assert len(empty_garage) == 1
