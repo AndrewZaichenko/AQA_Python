@@ -9,6 +9,8 @@ from selenium.webdriver.common.by import By
 import requests
 # from selenium.webdriver.support.ui import WebDriverWait
 # from selenium.webdriver.support import expected_conditions
+from home_work_12.facade.login_facade import LoginFacade
+from home_work_12.facade.logout_facade import LogoutFacade
 from home_work_12.facade.registration_facade import RegistrationFacade
 
 
@@ -18,6 +20,8 @@ class TestBase:
         self._driver = webdriver.Chrome()
         self._user_session = requests.session()
         self._registration_facade = RegistrationFacade(self._driver)
+        self._login_facade = LoginFacade(self._driver)
+        self._logout_facade = LogoutFacade(self._driver)
         self._driver.implicitly_wait(3)
         self._driver.get("https://guest:welcome2qauto@qauto2.forstudy.space/")
 
@@ -40,6 +44,12 @@ class TestRegistration(TestBase):
         self._registration_facade.register_user(self.user_first_name, self.user_last_name, self.user_email, self.user_password, self.user_password)
         assert self._registration_facade.check_is_user_logged_in()
 
+    def test_user_logout_and_login_after_registration(self):
+        self._registration_facade.register_user(self.user_first_name, self.user_last_name, self.user_email, self.user_password, self.user_password)
+        self._logout_facade.logout_user()
+        self._login_facade.login_user(self.user_email, self.user_password)
+        assert self._login_facade.check_is_user_logged_in()
+
     def test_empty_garage_after_registration_2(self):
         # self._driver.implicitly_wait(3)
         # self._driver.get("https://guest:welcome2qauto@qauto2.forstudy.space/")
@@ -60,3 +70,7 @@ class TestRegistration(TestBase):
         empty_garage = self._driver.find_elements(By.XPATH, "//p[text()='You don’t have any cars in your garage']")
         # empty_garage = WebDriverWait(self._driver, 10).until(expected_conditions.visibility_of_element_located((By.XPATH, "//p[text()='You don’t have any cars in your garage']")))
         assert empty_garage is not None
+
+
+
+
