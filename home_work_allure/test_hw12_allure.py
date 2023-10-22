@@ -3,7 +3,9 @@ Write test for user registration, using pytest(with setup\teardowns), and seleni
 +
 Add classes for driver, pages, facades for previous homework
 +
-pytest HTML Report and Allure
+Create test report with pytest-html
+Install Allure, Create allure report
+Create steps for the Registration Tests class, using facades
 """
 import allure
 import pytest

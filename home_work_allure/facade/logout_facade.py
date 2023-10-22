@@ -1,3 +1,4 @@
+import allure
 from facade.base_facade import BaseFacade
 
 
@@ -6,6 +7,7 @@ class LogoutFacade(BaseFacade):
     def __init__(self, driver):
         super().__init__(driver)
 
+    @allure.step("User Logout")
     def logout_user(self):
         self._garage_page.profile_dropdown().click()
         self._garage_page.user_logout().click()

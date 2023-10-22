@@ -1,3 +1,4 @@
+import allure
 from facade.base_facade import BaseFacade
 
 
@@ -6,6 +7,7 @@ class LoginFacade(BaseFacade):
     def __init__(self, driver):
         super().__init__(driver)
 
+    @allure.step("User Login")
     def login_user(self, email, password):
         self._main_page.sign_in_button().click()
         self._login_form_page.email_field().send_keys(email)
